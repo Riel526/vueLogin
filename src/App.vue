@@ -3,38 +3,18 @@
     <v-app-bar app color="primary" dark>
       <v-toolbar-title>Dashboard</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn rounded text>Home</v-btn>
-      <v-btn rounded text>Login</v-btn>
+      <v-btn
+      v-for="link in links"
+      :key="`${link.label}header-link`" 
+      rounded 
+      text 
+      :to="link.url">
+      {{ link.label }}
+      </v-btn>
     </v-app-bar>
 
     <v-content>
-
-    <v-card width="400" class="mx-auto mt-5">
-      <v-card-title>
-        <h1 class="display">Login</h1>
-      </v-card-title>
-      <v-card-text>
-        <v-form>
-          <v-text-field 
-          label="Username"
-          prepend-icon="mdi-account-circle"
-          />
-          <v-text-field 
-          label="Password" 
-          :type="showPassword ? 'text' : 'password'"
-          prepend-icon="mdi-lock"
-          :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-          @click:append="showPassword = !showPassword"
-          />
-        </v-form>
-      </v-card-text>
-      <v-divider></v-divider>
-      <v-card-actions>
-        <v-btn color="success">Register</v-btn>
-        <v-spacer></v-spacer>
-        <v-btn color="info">Login</v-btn>
-      </v-card-actions>
-    </v-card>
+      <router-view></router-view>
     </v-content>
 
     <v-footer class="primary lighten-1">
@@ -42,15 +22,16 @@
       <v-row justify="center" no-gutters>
         <v-btn
           v-for="link in links"
-          :key="link"
+          :key="`${link.label}-footer-link`"
           class="my-2"
           color="white"
           text
           rounded
+          :to="link.url"
         >
-          {{ link }}
+          {{ link.label }}
         </v-btn>
-        <v-col class="text-center mt-4" cols="12">
+        <v-col class="text-center mt-4" cols="12" dark>
           Dashboard
         </v-col>
       </v-row>
@@ -70,8 +51,18 @@ export default {
   data: () => ({
     showPassword: false,
     links: [
-      'Home',
-      'Login'
+      {
+        label: 'Home',
+        url: '/'
+      },
+      {
+        label: 'Login',
+        url: '/login'
+      },
+      {
+        label: 'Dashboard',
+        url: "/dashboard"
+      }
     ]
   }),
 };
