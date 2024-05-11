@@ -1,5 +1,14 @@
 <template>
   <v-app>
+    <v-app-bar app color="primary" dark>
+      <v-toolbar-title>Dashboard</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn rounded text>Home</v-btn>
+      <v-btn rounded text>Login</v-btn>
+    </v-app-bar>
+
+    <v-content>
+
     <v-card width="400" class="mx-auto mt-5">
       <v-card-title>
         <h1 class="display">Login</h1>
@@ -26,6 +35,27 @@
         <v-btn color="info">Login</v-btn>
       </v-card-actions>
     </v-card>
+    </v-content>
+
+    <v-footer class="primary lighten-1">
+      <v-layout justify-center wrap>
+      <v-row justify="center" no-gutters>
+        <v-btn
+          v-for="link in links"
+          :key="link"
+          class="my-2"
+          color="white"
+          text
+          rounded
+        >
+          {{ link }}
+        </v-btn>
+        <v-col class="text-center mt-4" cols="12">
+          Dashboard
+        </v-col>
+      </v-row>
+    </v-layout>
+    </v-footer>
   </v-app>
 </template>
 
@@ -38,7 +68,11 @@ export default {
   },
 
   data: () => ({
-    showPassword: false
+    showPassword: false,
+    links: [
+      'Home',
+      'Login'
+    ]
   }),
 };
 </script>
