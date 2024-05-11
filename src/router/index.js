@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import Login from '../views/Login.vue'
 import DashboardView from '../views/DashboardView.vue'
+import SignupView from '../views/SignupView.vue'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,11 @@ const routes = [
     path:'/dashboard',
     name: 'dashboard',
     component: DashboardView
+  },
+  {
+    path:'/signup',
+    name:'signup',
+    component: SignupView
   }
 
 ]
